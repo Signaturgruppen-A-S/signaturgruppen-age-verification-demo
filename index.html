@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Signaturgruppen Age Verification</title>
+    <!-- Importing Materialize CSS -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    
+    <div class="container center-align">
+        <h1>Signaturgruppen Age Verification</h1>
+        <h2>Welcome to the Demo</h2>
+        <div class="section">
+            <p>This is a simple example demonstration of how to integrate to Signaturgruppen Age Verification using simple HTML and JS</p>
+        </div>
+        <div class="section">
+            <a class="waves-effect waves-light btn" onclick="showPopup()">Click Me</a>
+        </div>
+    </div>
+    
+    <!-- Script for the popup -->
+    <script>
+        var windowRef;
+        function receiveEvent(event) {
+            console.log(event);
+            if (event.data.command === 'age_verify_response') {
+                this.windowRef.close();
+            }
+            
+        }
+        
+        window.addEventListener("message", receiveEvent, false);
+        
+        function popupWindow(n, t, i, r){
+            this.popupActivated = true
+            let u = window.outerHeight / 2 + window.screenY - r / 2
+            let f = window.outerWidth / 2 + window.screenX - i / 2
+            this.windowRef = window.open(n, t, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + i + ', height=' + r + ', top=' + u + ', left=' + f)
+            
+            this.windowRef.focus()
+        }
+        
+        function showPopup() {
+            popupWindow('https://pp.netseidbroker.dk/op/connect/authorize?client_id=aac81a04-6568-4912-be8b-00ccba7b8b39&redirect_uri=https://localhost:5001/WebMessagingCallback/ImplicitCallback&response_type=id_token&scope=openid%20age_verify:16&idp_values=idbrokerdk&prompt=login&nonce=nonce1', 'Verificer Alder', '452', '640');
+        }
+    </script>
+    
+</body>
+</html>
