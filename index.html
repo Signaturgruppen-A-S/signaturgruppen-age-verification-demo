@@ -7,6 +7,9 @@
     <!-- Importing Materialize CSS -->
     <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
+    <!-- Inlcuding the required Signaturgruppen Broker JavaScript files here -->
+    <script src="sg-age-verify-config.js"></script>
+    <script src="sg-age-verify.js"></script>
 </head>
 <body>
     
@@ -17,35 +20,37 @@
             <p>This is a simple example demonstration of how to integrate to Signaturgruppen Age Verification using simple HTML and JS</p>
         </div>
         <div class="section">
-            <a class="waves-effect waves-light btn" onclick="showPopup()">Click Me</a>
+            <a class="waves-effect waves-light btn" onclick="clickStartAgeVerifyDemo()">Click Me</a>
+        </div>
+        <div class="section">
+            <h5>Verification Result:</h5>
+            <div id="result" class="card-panel grey lighten-4">
+                <span>No result yet.</span>
+            </div>
         </div>
     </div>
     
     <!-- Script for the popup -->
     <script>
-        var windowRef;
-        function receiveEvent(event) {
-            console.log(event);
-            if (event.data.command === 'age_verify_response') {
-                this.windowRef.close();
+        function updateResult(isVerified) {
+            const resultDiv = document.getElementById('result');
+            if (isVerified) {
+                resultDiv.innerHTML = '<span class="green-text text-darken-2">Verified success</span>';
+            } else {
+                resultDiv.innerHTML = '<span class="red-text text-darken-2">Not verified</span>';
             }
+        }
+        
+        function clickStartAgeVerifyDemo(){
+            var promise = sgBrokerStartAgeVerify(16);
             
+            promise.then((value) => {
+                //result is on form: { age_to_verify: [age], age_verified: [true/false] }
+                console.log(value);
+                updateResult(value.age_verified);
+            });
         }
         
-        window.addEventListener("message", receiveEvent, false);
-        
-        function popupWindow(n, t, i, r){
-            this.popupActivated = true
-            let u = window.outerHeight / 2 + window.screenY - r / 2
-            let f = window.outerWidth / 2 + window.screenX - i / 2
-            this.windowRef = window.open(n, t, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + i + ', height=' + r + ', top=' + u + ', left=' + f)
-            
-            this.windowRef.focus()
-        }
-        
-        function showPopup() {
-            popupWindow('https://pp.netseidbroker.dk/op/connect/authorize?client_id=aac81a04-6568-4912-be8b-00ccba7b8b39&redirect_uri=https://localhost:5001/WebMessagingCallback/ImplicitCallback&response_type=id_token&scope=openid%20age_verify:16&idp_values=idbrokerdk&prompt=login&nonce=nonce1', 'Verificer Alder', '452', '640');
-        }
     </script>
     
 </body>
