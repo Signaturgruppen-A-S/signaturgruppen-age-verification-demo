@@ -32,22 +32,22 @@
     
     <!-- Script for the popup -->
     <script>
-        function updateResult(isVerified) {
+        function updateResult(isVerified, error_description) {
             const resultDiv = document.getElementById('result');
             if (isVerified) {
                 resultDiv.innerHTML = '<span class="green-text text-darken-2">Verified success</span>';
+            } else if (typeof error_description != 'undefined') {
+                resultDiv.innerHTML = `<span class="red-text text-darken-2">Not verified : ${error_description}</span>`;
             } else {
                 resultDiv.innerHTML = '<span class="red-text text-darken-2">Not verified</span>';
             }
         }
         
         function clickStartAgeVerifyDemo(){
-            var promise = sgBrokerStartAgeVerify(16);
+            var promise = sgBrokerStartAgeVerify(this.sg_broker_demo_age_to_verify);
             
             promise.then((value) => {
-                //result is on form: { age_to_verify: [age], age_verified: [true/false] }
-                console.log(value);
-                updateResult(value.age_verified);
+                updateResult(value.age_verified, value.error_description);
             });
         }
         
