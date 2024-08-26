@@ -4,42 +4,40 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signaturgruppen Age Verification</title>
-    <!-- Importing Materialize CSS -->
-    <link href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css" rel="stylesheet">
+
     <link rel="stylesheet" href="style.css">
+
     <!-- Inlcuding the required Signaturgruppen Broker JavaScript files here -->
     <script src="sg-age-verify-config.js"></script>
     <script src="sg-age-verify.js"></script>
 </head>
 <body>
-    
-    <div class="container center-align">
-        <h1>Signaturgruppen Age Verification</h1>
-        <h3>Age verification using MitID</h3>
-        <div class="section">
-            <p>Please verify that you are 16 years old</p>
-        </div>
-        <div class="section">
-            <a class="waves-effect waves-light btn" onclick="clickStartAgeVerifyDemo()">Verify age with MitID</a>
-        </div>
-        <div class="section">
+
+        <h1>Signaturgruppen <small> Age Verification with MitID</small></h1>
+        <section>
+            <div class="content">
+                <p>Please verify that you are 16 years old</p>
             
-            <div id="result" class="card-panel result-panel z-depth-1">
-                <span>No result yet.</span>
+                <button onclick="clickStartAgeVerifyDemo()">Verify age with MitID</button>
             </div>
-        </div>
-    </div>
+            <div class="output">
+                <h2>Status</h2>
+                <p id="result">
+                    Awaiting result...
+                </p>
+            </div>
+        </section>
     
     <!-- Script for the popup -->
     <script>
         function updateResult(isVerified, error_description) {
             const resultDiv = document.getElementById('result');
             if (isVerified) {
-                resultDiv.innerHTML = '<span class="green-text text-darken-2">Verified success</span>';
+                resultDiv.innerHTML = '🟢 Verified success';
             } else if (typeof error_description != 'undefined') {
-                resultDiv.innerHTML = `<span class="red-text text-darken-2">Not verified : ${error_description}</span>`;
+                resultDiv.innerHTML = `🔴 Not verified : ${error_description}`;
             } else {
-                resultDiv.innerHTML = '<span class="red-text text-darken-2">Not verified</span>';
+                resultDiv.innerHTML = '🔴 Not verified age';
             }
         }
         
