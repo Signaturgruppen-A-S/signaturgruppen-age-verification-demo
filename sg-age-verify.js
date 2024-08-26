@@ -1,4 +1,4 @@
-function sgBrokerAgeResultInlineWithoutOlineValidation(ageToVerify, result){
+function sgBrokerAgeResultInlineJwtParseValidation(ageToVerify, result){
     function parseJwt (token) {
         var base64Url = token.split('.')[1];
         var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
@@ -48,7 +48,7 @@ function sgBrokerStartAgeVerify(ageToVerify) {
             if (event.origin == this.sg_broker_origin && event.data.command === 'webmessage_flow_response') {
                 windowRef.close();
                 var resultJson = JSON.parse(event.data.result);
-                var inlineResult = sgBrokerAgeResultInlineWithoutOlineValidation(ageToVerify, resultJson);
+                var inlineResult = sgBrokerAgeResultInlineJwtParseValidation(ageToVerify, resultJson);
                 resolve(inlineResult);
             }
         }

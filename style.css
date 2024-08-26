@@ -26,3 +26,26 @@ p {
 .btn:hover {
     background-color: #1976d2;
 }
+
+/* Style for the result panel to make it more compact and visually appealing */
+.result-panel {
+    padding: 10px;
+    border-radius: 8px;
+    background-color: #f0f4f8;
+    max-width: 300px;
+    margin: 0 auto;
+    display: inline-block;
+}
+
+.result-panel span {
+    font-size: 1.1em;
+    font-weight: 500;
+}
+
+.green-text.text-darken-2 {
+    color: #2e7d32 !important;
+}
+
+.red-text.text-darken-2 {
+    color: #c62828 !important;
+}
