@@ -23,7 +23,7 @@
             <div class="output">
                 <h2>Status</h2>
                 <p id="result">
-                    Awaiting result...
+                    Not started
                 </p>
             </div>
         </section>
@@ -40,8 +40,14 @@
                 resultDiv.innerHTML = '🔴 Not verified age';
             }
         }
+
+        function resetResult() {
+            const resultDiv = document.getElementById('result');
+            resultDiv.innerHTML = 'Awaiting result...';
+        }
         
         function clickStartAgeVerifyDemo(){
+            resetResult();
             var promise = sgBrokerStartAgeVerify(this.sg_broker_demo_age_to_verify);
             
             promise.then((value) => {
