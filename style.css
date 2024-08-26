@@ -1,77 +1,75 @@
 body {
-    background-color: #f5f5f5;
-    font-family: sans-serif;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    min-height: 100vh;
-    justify-content: center;
-    margin: 0;
+	background-color: #f5f5f5;
+	font-family: sans-serif;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	min-height: 100vh;
+	justify-content: center;
+	margin: 0;
 }
 
 h1 {
-    color: #000;
-    font-weight: 500;
-    width: 500px;
+	color: #000;
+	font-weight: 500;
+	width: 500px;
 }
-h1 small{
-    opacity: .6;
-    font-weight: 300;
-    font-size: 1.2rem;
-}
-
-
-section{
-    
-    border-radius: .5rem;
-    width: 500px;
-    outline: .5rem white solid;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    box-sizing: border-box;
+h1 small {
+	opacity: 0.6;
+	font-weight: 300;
+	font-size: 1.2rem;
 }
 
-section .content{
-    background: linear-gradient(#113c91, #00297a);
-    padding: 2rem;
-    color: white;
-    width: 100%;
-    box-sizing: border-box;
+section {
+	border-radius: 0.5rem;
+	width: 500px;
+	outline: 0.5rem white solid;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	box-sizing: border-box;
 }
 
-section .output{
-    display: flex;
-    flex-direction: column;
-    width: 100%;
-    padding: 2rem;
-    box-sizing: border-box;
+section .content {
+	background: linear-gradient(#113c91, #00297a);
+	padding: 2rem;
+	color: white;
+	width: 100%;
+	box-sizing: border-box;
 }
 
-section .output h2{
-    font-weight: 700;
-    font-size: .9rem;
-    opacity: .6;
-    margin: 0;
-    text-transform: uppercase;
+section .output {
+	display: flex;
+	flex-direction: column;
+	width: 100%;
+	padding: 2rem;
+	box-sizing: border-box;
 }
 
-section .output p{
-    margin: .5rem 0;
+section .output h2 {
+	font-weight: 700;
+	font-size: 0.9rem;
+	opacity: 0.6;
+	margin: 0;
+	text-transform: uppercase;
+}
+
+section .output p {
+	margin: 0.5rem 0;
 }
 
 button {
-    background-color: #00aeef;
-    color: white;
-    border-radius: 2rem;
-    border: none;
-    font-size: 0.8rem;
-    box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
-    padding: 1rem 2rem;
-    cursor: pointer;
+	background-color: #00aeef;
+	color: white;
+	border-radius: 2rem;
+	border: none;
+	font-size: 0.8rem;
+	box-shadow: 0px 8px 15px rgba(0, 0, 0, 0.1);
+	padding: 1rem 2rem;
+	cursor: pointer;
 }
 
 button:hover {
-    background-color: #1976d2;
+	background-color: #1976d2;
 }
