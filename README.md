@@ -15,9 +15,10 @@ You need to serve the folder from a webserver in order to support the cross orig
 
 ### Quick testing on Windows
 Windows has built-in support for Python, which is a very easy way to test the example. 
-1. Open a prompt in the root of the example project (the one with index.html).
-2. run 'python -m http.server 8000' (Windows will help the installation of Python)
-3. open up http://localhost:8000
+1. Clone or download to a folder
+2. Open a prompt in the root of the example project (the one with index.html).
+3. run 'python -m http.server 8000' (Windows will help the installation of Python)
+4. open up http://localhost:8000
 
 ## MitID testusers. 
 To test with MitID testusers in the PP environment, use the official MitID testtool: https://pp.mitid.dk/test-tool/frontend/#/create-identity.
