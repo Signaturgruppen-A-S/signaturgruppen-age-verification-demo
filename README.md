@@ -27,8 +27,21 @@ The example demo has demonstrated a full age verification flow and can be used a
 
 However, there a some things you need to consider:
 
-### Strong Age Verification - you need a backend
-In order to properly support a strong age verification mechanism, your integration should be protected from simple browser-tampering of HTML/JS at runtime. The provided example demo validates the age verification result received (ID token) directly in JavaScript. This last step, should be implemented in your backend. See the technical documentation for details and considerations. 
+### Nonce and ID token validation (you need a backend)
+The example generates a random nonce and passes this to the included JavaScript for each flow. The nonce should be uniquely generated in your backend for each age verification flow as this is passed back in the returned signed ID token (JWT) received as the receipt for the MitID age verification flow.
+In order to properly support a strong age verification mechanism, your integration should be protected from simple browser-tampering of HTML/JS at runtime. The provided example demo validates the age verification result received (ID token) directly in JavaScript.
+
+**Your backend should**
+* Generate a new unique nonce for each flow
+* Validate the received ID token and match the ID token with the expected value.
+
+See the technical documentation for more details and considerations. 
+
+### We do not have a backend, what to do?
+This example demo can be used as a template for a MitID age verification integration and works fully without a backend setup. 
+If your service chooses to implement age verification this way without a backend, you must ensure that you have understood the implications and limitations of this approach.
+
+In particular, the flow might be tampered in-browser by the end-user if you do not properly setup and validate the flows using a backend. JavaScript hardening might be required as a minimum effort to circumvent misuse.
 
 ## Documentation
 Signaturgruppen Broker supports MitID Age Verification for both OpenID Connect/OAuth clients as well as more custom integrations utilizing the JavaScript cross-document messaging API and REST as well as both full-fledged MitID flows and the specialized data-minimized and GDPR friendly Age Verification flows.
