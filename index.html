@@ -48,7 +48,9 @@
         
         function clickStartAgeVerifyDemo(){
             resetResult();
-            var promise = sgBrokerStartAgeVerify(this.sg_broker_demo_age_to_verify);
+
+            var nonce = crypto.randomUUID();
+            var promise = sgBrokerStartAgeVerify(nonce);
             
             promise.then((value) => {
                 updateResult(value.age_verified, value.error_description);
