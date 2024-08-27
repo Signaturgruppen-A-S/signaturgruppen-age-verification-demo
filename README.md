@@ -9,8 +9,15 @@ Setup for a predefined PP environment client, run the folder as a webapplication
 
 See the sg-age-verify-config.js file for configuration parameters such as the age to verify and client id.
 
-## Demonstration
+## Getting started
 The example demonstrates how to setup a MitID age verification flow using only the included vanilla JavaScript to setup and verify the result. 
+You need to serve the folder from a webserver in order to support the cross origin JavaScript (CORS) calls made from the example demo. 
+
+### Quick testing on Windows
+Windows has built-in support for Python, which is a very easy way to test the example. 
+1. Open a prompt in the root of the example project (the one with index.html).
+2. run 'python -m http.server 8000' (Windows will help the installation of Python)
+3. open up http://localhost:8000
 
 ## MitID testusers. 
 To test with MitID testusers in the PP environment, use the official MitID testtool: https://pp.mitid.dk/test-tool/frontend/#/create-identity.
