@@ -1,4 +1,8 @@
 # Signaturgruppen Age Verification demo
+
+![](images/age_v_demo_1.PNG)
+
+## Introduction
 This example demonstrates a solution in pure vanilla JavaScript that integrates to Signaturgruppen Age Verification.
 
 Setup for a predefined PP environment client, run the folder as a webapplication
