@@ -44,6 +44,5 @@ If your service chooses to implement age verification this way without a backend
 In particular, the flow might be tampered in-browser by the end-user if you do not properly setup and validate the flows using a backend. JavaScript hardening might be required as a minimum effort to circumvent misuse.
 
 ## Documentation
-Signaturgruppen Broker supports MitID Age Verification for both OpenID Connect/OAuth clients as well as more custom integrations utilizing the JavaScript cross-document messaging API and REST as well as both full-fledged MitID flows and the specialized data-minimized and GDPR friendly Age Verification flows.
-You need to consider what data, what flow and what integration that suits your service best. 
-Consult the technical documentation found at: https://signaturgruppen-a-s.github.io/signaturgruppen-broker-documentation/, look for MitID and MitID Age Verification.
+Work in progress. Stay tuned. 
+While waiting, you might be interested in the technical documenation for Signaturgruppen Broker, found at: https://signaturgruppen-a-s.github.io/signaturgruppen-broker-documentation/
