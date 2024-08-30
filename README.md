@@ -45,5 +45,4 @@ If your service chooses to implement age verification this way without a backend
 In particular, the flow might be tampered in-browser by the end-user if you do not properly setup and validate the flows using a backend. JavaScript hardening might be required as a minimum effort to circumvent misuse.
 
 ## Documentation
-Work in progress. Stay tuned. 
-While waiting, you might be interested in the technical documenation for Signaturgruppen Broker, found at: https://signaturgruppen-a-s.github.io/signaturgruppen-broker-documentation/
+https://signaturgruppen-a-s.github.io/signaturgruppen-broker-documentation/ageverification/age_verification.html
