@@ -1,24 +1,26 @@
-function sgBrokerOnlineValidateIdToken(idToken, resolve)
+function parseJwt (token) {
+    var base64Url = token.split('.')[1];
+    var base64 = base64Url.replace(/-/g, '+').replace(/_/g, '/');
+    var jsonPayload = decodeURIComponent(window.atob(base64).split('').map(function(c) {
+        return '%' + ('00' + c.charCodeAt(0).toString(16)).slice(-2);
+    }).join(''));
+
+    return JSON.parse(jsonPayload);
+}
+
+function sgBrokerParseIdTokenResponse(idToken, resolve)
 {
-    //sg_broker_id_token_endpoint -> see swagger endpoint at: https://pp.netseidbroker.dk/op/swagger/index.html
-    //sg_broker_id_token_endpoint validates Signaturgruppen ID token. It is recommended to call this from your backend. 
-    //if invoked from the browser, as from this demo, end-users might be able to circumvent the JS code and affect the result.
-    var bodyData = { idToken : idToken };
-    fetch(this.sg_broker_id_token_endpoint, {
-        method: "POST",
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(bodyData)
-    }).then(res => res.json())
-    .then(jsonResponse => {
-        resolve({ age_to_verify: this.sg_broker_demo_age_to_verify, age_verified: jsonResponse.validated, claims : jsonResponse.claims });
-    });
+    var parsed = parseJwt(idToken);
+    var verifiedClaimValues = parsed.idbrokerdk_age_verified.split(':');
+    var ageVerified = verifiedClaimValues[0] == this.sg_broker_demo_age_to_verify && verifiedClaimValues[1] == 'true';
+    resolve({ id_token: idToken, age_verified: ageVerified });
 }
 
 function sgBrokerHandleResponse(event, resolve){
     var result = JSON.parse(event.data.result);
 
     if(typeof result.id_token !== 'undefined'){
-        sgBrokerOnlineValidateIdToken(result.id_token, resolve);
+        sgBrokerParseIdTokenResponse(result.id_token, resolve);
     }else{
         resolve({ age_to_verify: this.sg_broker_demo_age_to_verify, age_verified: false, error_description : result.error_description });
     }
@@ -31,19 +33,6 @@ function sgBrokerIsAgeEvent(event){
 function sgBrokerStartAgeVerify(nonce) {
     return new Promise((resolve, reject) => {
         var windowRef;
-        var nonceVerifyResolve = function (result) 
-        {
-            if(result.age_verified == true){
-                if(nonce !== result.claims.nonce){
-                    resolve({ age_to_verify: this.sg_broker_demo_age_to_verify, age_verified: false, error_description : 'nonce validation error' });
-                    return;
-                }
-                resolve(result);
-            }
-            if(result.age_verified == false){
-                resolve(result);
-            }
-        };
         
         function popupWindow(n, t, i, r){
             let u = window.outerHeight / 2 + window.screenY - r / 2
@@ -66,7 +55,7 @@ function sgBrokerStartAgeVerify(nonce) {
 
             if (sgBrokerIsAgeEvent(event)) {
                 windowRef.close();
-                sgBrokerHandleResponse(event, nonceVerifyResolve);
+                sgBrokerHandleResponse(event, resolve);
             }
         }
         
@@ -76,4 +65,3 @@ function sgBrokerStartAgeVerify(nonce) {
         
     });
 }
-

@@ -49,11 +49,24 @@
         function clickStartAgeVerifyDemo(){
             resetResult();
 
+            //Step 1: Generate unique nonce. Optimal to generate in your backend. 
+            //The nonce is echoed back as part of the resulting ID token and is used for replay protection and binding the ID token to the transaction.
             var nonce = crypto.randomUUID();
+
+            //Step 2: Start flow, opens a popop.
             var promise = sgBrokerStartAgeVerify(nonce);
             
+            //Step 3: When done you receive:
+            //age_verified bool, success if verification was successful
+            //Signed ID token, validate this in your backend. Can be validated at any stage of your workflow.
             promise.then((value) => {
                 updateResult(value.age_verified, value.error_description);
+                
+                //Validate the id_token (value.id_token) in your backend to implement a strong age verification
+                if(value.age_verified){
+                    console.log("Received ID token. Remember to validate this in your backend:");
+                    console.log(value.id_token.substring(0, 25) + '...');
+                }
             });
         }
         
