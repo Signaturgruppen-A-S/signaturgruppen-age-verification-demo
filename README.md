@@ -21,28 +21,12 @@ Windows has built-in support for Python, which is a very easy way to test the ex
 4. open up http://localhost:8000
 
 ## MitID testusers. 
-To test with MitID testusers in the PP environment, use the official MitID testtool: https://pp.mitid.dk/test-tool/frontend/#/create-identity.
+To test with MitID testusers in the PP environment, you can use one of our [prebuilt MitID testusers](https://signaturgruppen-a-s.github.io/signaturgruppen-broker-documentation/ageverification/age_verification.html#getting-started--open-quick-testing) or other any available MitID testuser.
 
 ## It works! Now what?
 The example demo has demonstrated a full age verification flow and can be used as a template for the integration into your own service.
 
-However, there a some things you need to consider:
-
-### Nonce and ID token validation (you need a backend)
-The example generates a random nonce and passes this to the included JavaScript for each flow. The nonce should be uniquely generated in your backend for each age verification flow as this is passed back in the returned signed ID token (JWT) received as the receipt for the MitID age verification flow.
-In order to properly support a strong age verification mechanism, your integration should be protected from simple browser-tampering of HTML/JS at runtime. The provided example demo validates the age verification result received (ID token) directly in JavaScript.
-
-**Your backend should**
-* Generate a new unique nonce for each flow
-* Validate the received ID token and match the ID token with the expected value.
-
-See the technical documentation for more details and considerations. 
-
-### We do not have a backend, what to do?
-This example demo can be used as a template for a MitID age verification integration and works fully without a backend setup. 
-If your service chooses to implement age verification this way without a backend, you must ensure that you have understood the implications and limitations of this approach.
-
-In particular, the flow might be tampered in-browser by the end-user if you do not properly setup and validate the flows using a backend. JavaScript hardening might be required as a minimum effort to circumvent misuse.
+Please fully read and understand the [technical documentation](https://signaturgruppen-a-s.github.io/signaturgruppen-broker-documentation/ageverification/age_verification.html), which adresses the things you should consider before you can wrap up your integration.
 
 ## Documentation
 https://signaturgruppen-a-s.github.io/signaturgruppen-broker-documentation/ageverification/age_verification.html
