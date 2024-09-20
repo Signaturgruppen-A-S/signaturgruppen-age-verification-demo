@@ -30,3 +30,38 @@ Please fully read and understand the [technical documentation](https://signaturg
 
 ## Documentation
 https://signaturgruppen-a-s.github.io/signaturgruppen-broker-documentation/ageverification/age_verification.html
+
+## Validation of ID token example
+Here an example POST using the token verify API POST endpoint, which enables validation of the received ID token.
+```
+curl -X 'POST' \
+  'https://pp.netseidbroker.dk/op/api/v1/tokenverify' \
+  -H 'accept: text/plain' \
+  -H 'Content-Type: application/json' \
+  -d '{
+  "idToken": "eyJh..jCwkJg"
+}'
+```
+The response will be on the form: 
+
+```
+{
+  "validated": true,
+  "claims": {
+    "iss": "https://pp.netseidbroker.dk/op",
+    "nbf": "1726822698",
+    "iat": "1726822698",
+    "exp": "1726822998",
+    "aud": "9d3c7..9b8",
+    "nonce": "d....c",
+    "sid": "0ed...f",
+    "sub": "91a7..4",
+    "auth_time": "1726822698",
+    "idp": "idbrokerdk",
+    "neb_sid": "0e..f",
+    "transaction_id": "4f..d",
+    "idtoken_type": "idbroker.dk",
+    "idbrokerdk_age_verified": "18:true"
+  }
+}
+```
