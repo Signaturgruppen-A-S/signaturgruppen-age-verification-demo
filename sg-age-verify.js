@@ -34,6 +34,9 @@ function sgBrokerStartAgeVerify(nonce) {
     var windowRef;
     
     function popupWindow(n, t, i, r){
+        if(navigator.userAgent.indexOf("Safari") != -1 && navigator.userAgent.indexOf("Chrome") == -1){
+            r = parseInt(r)+30 // Safe margin for Safari on Mac OS
+        }
         let u = window.outerHeight / 2 + window.screenY - r / 2
         let f = window.outerWidth / 2 + window.screenX - i / 2
         windowRef = window.open(n, t, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, innerWidth=' + i + ', innerHeight=' + r + ', top=' + u + ', left=' + f)
