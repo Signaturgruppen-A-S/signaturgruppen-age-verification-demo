@@ -2,6 +2,11 @@
 
 ![](images/age_v_demo_1.PNG)
 
+## Updates
+### 01-10-2024
+We have added an update to the demo, as we have seen that Safari internal pop-up blocker has bloked the MitID pop-up because the pop-up was started inside a JS promise. 
+We have updated the JS function: **sgBrokerStartAgeVerify** accordingly, by moving the pop-up code outside the returned promise in the code, which fixes this issue.
+
 ## Introduction
 This example demonstrates a solution in pure vanilla JavaScript that integrates to Signaturgruppen Age Verification.
 
