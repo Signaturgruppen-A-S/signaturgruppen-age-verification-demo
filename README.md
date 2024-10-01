@@ -4,8 +4,9 @@
 
 ## Updates
 ### 01-10-2024
-We have added an update to the demo, as we have seen that Safari internal pop-up blocker has bloked the MitID pop-up because the pop-up was started inside a JS promise. 
-We have updated the JS function: **sgBrokerStartAgeVerify** accordingly, by moving the pop-up code outside the returned promise in the code, which fixes this issue.
+
+* We have added an update to the demo, as we have seen that Safari internal pop-up blocker has bloked the MitID pop-up because the pop-up was started inside a JS promise. We have updated the JS function: **sgBrokerStartAgeVerify** accordingly, by moving the pop-up code outside the returned promise in the code, which fixes this issue.
+* We have added additional 30px height for Safari browsers for the pop-up.  
 
 ## Introduction
 This example demonstrates a solution in pure vanilla JavaScript that integrates to Signaturgruppen Age Verification.
@@ -32,6 +33,8 @@ To test with MitID testusers in the PP environment, you can use one of our [preb
 The example demo has demonstrated a full age verification flow and can be used as a template for the integration into your own service.
 
 Please fully read and understand the [technical documentation](https://signaturgruppen-a-s.github.io/signaturgruppen-broker-documentation/ageverification/age_verification.html), which adresses the things you should consider before you can wrap up your integration.
+
+> Note, this is demo code and it should be adapted to your setup accordingly. We have tried best effort to demonstrate how it can be setup, but you will have to test and verify the implementation in your specific webpage to verify that everything works as intended for your target users and user-agents.
 
 ## Documentation
 https://signaturgruppen-a-s.github.io/signaturgruppen-broker-documentation/ageverification/age_verification.html
