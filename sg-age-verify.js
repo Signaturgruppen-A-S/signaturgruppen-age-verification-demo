@@ -36,7 +36,7 @@ function sgBrokerStartAgeVerify(nonce) {
     function popupWindow(n, t, i, r){
         let u = window.outerHeight / 2 + window.screenY - r / 2
         let f = window.outerWidth / 2 + window.screenX - i / 2
-        windowRef = window.open(n, t, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, width=' + i + ', height=' + r + ', top=' + u + ', left=' + f)
+        windowRef = window.open(n, t, 'toolbar=no, location=no, directories=no, status=no, menubar=no, scrollbars=no, resizable=no, copyhistory=no, innerWidth=' + i + ', innerHeight=' + r + ', top=' + u + ', left=' + f)
         
         windowRef.focus()
     }
